@@ -1,0 +1,7 @@
+name: Mentor
+main: Lihad.Mentor.Mentor
+version: 1.0
+commands:
+  mentor:
+    description: Mentoring
+    usage: Mentoring
