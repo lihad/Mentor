@@ -23,6 +23,7 @@ public class BeyondConfig {
 	public static List<Player> getOnlineMentors(){
 		List<String> mentornames = getMentors();
 		List<Player> players = new LinkedList<Player>();
+		if(mentornames == null) return null;
 		for(int i = 0;i<mentornames.size();i++){
 			if(plugin.getServer().getPlayer(mentornames.get(i)) != null)players.add(plugin.getServer().getPlayer(mentornames.get(i)));
 		}
@@ -51,6 +52,7 @@ public class BeyondConfig {
 	public static List<String> getMentorees(){
 		List<String> mentorees = new LinkedList<String>();
 		List<String> mentornames = getMentors();
+		if(mentornames == null) return null;
 		for(int i = 0;i<mentornames.size();i++){
 			mentorees.add(getMentoree(mentornames.get(i)));
 		}
@@ -59,6 +61,7 @@ public class BeyondConfig {
 	public static List<Player> getOnlineMentorees(){
 		List<String> mentorees = getMentorees();
 		List<Player> players = new LinkedList<Player>();
+		if(mentorees == null) return null;
 		for(int i = 0;i<mentorees.size();i++){
 			if(plugin.getServer().getPlayer(mentorees.get(i)) != null)players.add(plugin.getServer().getPlayer(mentorees.get(i)));
 		}
@@ -81,15 +84,23 @@ public class BeyondConfig {
 	}
 	//is Functions
 	public static boolean isMentor(String player){
+		try{
 		if(getMentors().contains(player))return true;
 		else return false;
+		}catch(NullPointerException e){
+			return false;
+		}
 	}
 	public static boolean isMentor(Player player){
 		return isMentor(player.getName());
 	}
 	public static boolean isMentoree(String player){
+		try{
 		if(getMentorees().contains(player))return true;
 		else return false;
+		}catch(NullPointerException e){
+			return false;
+		}
 	}
 	public static boolean isMentoree(Player player){
 		return isMentoree(player.getName());

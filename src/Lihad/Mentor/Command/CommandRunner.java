@@ -34,7 +34,7 @@ public class CommandRunner implements CommandExecutor {
 					player.sendMessage("To abandon this player, type "+ChatColor.RED.toString()+" /mentor ditch");
 				}else{
 					player.sendMessage(ChatColor.RED.toString()+"You currently have no drifter looking up to you! Oh no!");
-					player.sendMessage("Type"+ChatColor.GREEN.toString()+" /mentor <playername>"+ChatColor.GREEN.toString()+" to become a mentor of a drifter!");
+					player.sendMessage("Type"+ChatColor.GREEN.toString()+" /mentor <playername>"+ChatColor.WHITE.toString()+" to become a mentor of a drifter!");
 				}
 			}else if(Mentor.handler.inGroup(player.getWorld().getName(), player.getName(), "Drifter")){
 				if(BeyondConfig.isMentoree(player)){
