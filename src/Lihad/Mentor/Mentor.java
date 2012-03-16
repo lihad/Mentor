@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
+import Lihad.Mentor.BukkitSchedule.BukkitSchedule;
 import Lihad.Mentor.Listeners.BeyondPluginListener;
 
 import com.nijiko.permissions.PermissionHandler;
@@ -42,8 +43,9 @@ public class Mentor extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(pluginListener,this);
         
-		//TimerManager
-        
+		//BukkitSchedulerManager
+		getServer().getScheduler().scheduleAsyncRepeatingTask(this,new BukkitSchedule(), 0, 1200L);
+		
         //CommandManager
         
 

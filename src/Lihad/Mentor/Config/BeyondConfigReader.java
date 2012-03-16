@@ -1,6 +1,7 @@
 package Lihad.Mentor.Config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -48,8 +49,10 @@ public class BeyondConfigReader {
     	}
     	return array; 	
     }
-	public static Set<String> getKeyList(String path){
-    	return Mentor.configuration.getConfigurationSection(path).getKeys(true);
+	public static List<String> getKeyList(String path){
+		if(Mentor.configuration.getConfigurationSection(path) == null)return null;
+		Set<String> raw = Mentor.configuration.getConfigurationSection(path).getKeys(false);
+    	return Arrays.asList(raw.toArray(new String[raw.size()]));
     }
     public static boolean getBoolean(String string, boolean arg) {
         return Mentor.configuration.getBoolean(string, arg);
