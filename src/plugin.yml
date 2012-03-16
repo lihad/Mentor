@@ -5,3 +5,6 @@ commands:
   mentor:
     description: Mentoring
     usage: Mentoring
+  mc:
+    description: MentoringChat
+    usage: MentoringChat

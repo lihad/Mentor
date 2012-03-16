@@ -1,5 +1,6 @@
 package Lihad.Mentor;
 
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -7,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 import Lihad.Mentor.BukkitSchedule.BukkitSchedule;
+import Lihad.Mentor.Command.CommandRunner;
 import Lihad.Mentor.Listeners.BeyondPluginListener;
 
 import com.nijiko.permissions.PermissionHandler;
@@ -21,6 +23,8 @@ public class Mentor extends JavaPlugin {
 	public static PermissionHandler handler;
 	private final BeyondPluginListener pluginListener = new BeyondPluginListener(this);
 	public static boolean permissionsEngaged;
+	public static CommandExecutor cmd;
+
 
 	
     public void onDisable() {
@@ -47,7 +51,9 @@ public class Mentor extends JavaPlugin {
 		getServer().getScheduler().scheduleAsyncRepeatingTask(this,new BukkitSchedule(), 0, 1200L);
 		
         //CommandManager
-        
+		cmd = new CommandRunner(this);
+		getCommand("mentor").setExecutor(cmd);
+		getCommand("mc").setExecutor(cmd);
 
         //OutputManager
 		if(permissionsEngaged)System.out.println("[Mentor] Permissions is Active");
