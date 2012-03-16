@@ -28,6 +28,14 @@ public class BeyondConfig {
 		}
 		return players;
 	}
+	public static String getMentor(String mentoree){
+		List<String> mentornames = getMentors();
+		for(int i = 0;i<mentornames.size();i++){
+			if(getMentoree(mentornames.get(i)).equals(mentoree))return mentornames.get(i);
+		}
+		System.out.println("[Mentor] Error passed: LINE 35 Lihad.Mentor.BeyondConfig");
+		return null;
+	}
 	public static String getMentoree(String mentor){
 		return BeyondConfigReader.getString("Mentors."+mentor+".drifter");
 	}
