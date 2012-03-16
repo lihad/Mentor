@@ -42,11 +42,11 @@ public class BeyondConfig {
 	public static String getMentoree(Player mentor){
 		return BeyondConfigReader.getString("Mentors."+mentor.getName()+".drifter");
 	}
-	public static Long getStamp(String mentor){
-		return BeyondConfigReader.getLong("Mentors."+mentor+".stamp");	
+	public static int getStamp(String mentor){
+		return BeyondConfigReader.getInt("Mentors."+mentor+".stamp");	
 	}
-	public static Long getStamp(Player mentor){
-		return BeyondConfigReader.getLong("Mentors."+mentor.getName()+".stamp");	
+	public static int getStamp(Player mentor){
+		return BeyondConfigReader.getInt("Mentors."+mentor.getName()+".stamp");	
 	}
 	public static List<String> getMentorees(){
 		List<String> mentorees = new LinkedList<String>();
