@@ -39,7 +39,8 @@ public class CommandRunner implements CommandExecutor {
 			}else if(Mentor.handler.inGroup(player.getWorld().getName(), player.getName(), "Drifter")){
 				if(BeyondConfig.isMentoree(player)){
 					player.sendMessage("You are currently being mentored by: "+ChatColor.GREEN.toString()+BeyondConfig.getMentor(player.getName()));
-					player.sendMessage("Type "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to join a private chat with your mentor.  Type "+ChatColor.RED.toString()+"/mentor ditch"+ChatColor.WHITE.toString()+" to ditch your mentor");
+					player.sendMessage("Type "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to join a private chat with your mentor.");
+					player.sendMessage("Type "+ChatColor.RED.toString()+"/mentor ditch"+ChatColor.WHITE.toString()+" to ditch your mentor");
 				}else if(invite.containsValue(player.getName())){
 					String mentor = "no one";
 					for(int i=0;i<invite.size();i++){
@@ -52,7 +53,7 @@ public class CommandRunner implements CommandExecutor {
 
 				}else{
 					player.sendMessage(ChatColor.GREEN.toString()+"You are requesting the help of a Mentor!");
-					plugin.getServer().broadcastMessage(ChatColor.GREEN.toString()+"Drifter "+player.getName()+ChatColor.WHITE.toString()+" is requesting a Mentor! Type "+ChatColor.GRAY.toString()+"/mentor"+player.getName()+ChatColor.WHITE.toString()+" to become their mentor!");
+					plugin.getServer().broadcastMessage(ChatColor.GREEN.toString()+"Drifter "+player.getName()+ChatColor.WHITE.toString()+" is requesting a Mentor! Type "+ChatColor.GRAY.toString()+"/mentor "+player.getName()+ChatColor.WHITE.toString()+" to become their mentor!");
 				}
 			}else{
 				player.sendMessage(ChatColor.RED.toString()+"You are unable to make a player your mentor :(");
@@ -119,8 +120,10 @@ public class CommandRunner implements CommandExecutor {
 			Player player = (Player)sender;
 			if(BeyondConfig.isMentoree(player)){
 				player.performCommand("tell "+BeyondConfig.getMentor(player.getName()));
+				player.sendMessage(ChatColor.GREEN.toString()+"Type /tell to leave chat");
 			}else if(BeyondConfig.isMentor(player)){
 				player.performCommand("tell "+BeyondConfig.getMentoree(player.getName()));
+				player.sendMessage(ChatColor.GREEN.toString()+"Type /tell to leave chat");
 			}else{
 				player.sendMessage(ChatColor.RED.toString()+"Not a valid command for your current situation");
 			}
