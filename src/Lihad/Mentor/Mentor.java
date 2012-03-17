@@ -9,6 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import Lihad.Mentor.BukkitSchedule.BukkitSchedule;
 import Lihad.Mentor.Command.CommandRunner;
+import Lihad.Mentor.Config.BeyondConfig;
+import Lihad.Mentor.Config.BeyondConfigReader;
+import Lihad.Mentor.Config.BeyondConfigWriter;
 import Lihad.Mentor.Listeners.BeyondPluginListener;
 
 import com.nijiko.permissions.PermissionHandler;
@@ -24,6 +27,9 @@ public class Mentor extends JavaPlugin {
 	private final BeyondPluginListener pluginListener = new BeyondPluginListener(this);
 	public static boolean permissionsEngaged;
 	public static CommandExecutor cmd;
+	public static BeyondConfigWriter write;
+	public static BeyondConfigReader read;
+	public static BeyondConfig config;
 
 
 	
@@ -39,6 +45,9 @@ public class Mentor extends JavaPlugin {
 		configuration = getConfig();
 
 		//ClassManager
+		config = new BeyondConfig(this);
+		read = new BeyondConfigReader(this);
+		write = new BeyondConfigWriter(this);
 	
 		//PermsManager
 		setupPermissions();

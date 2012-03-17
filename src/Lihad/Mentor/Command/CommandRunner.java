@@ -88,13 +88,17 @@ public class CommandRunner implements CommandExecutor {
 			}else if(Mentor.handler.inGroup(player.getWorld().getName(), player.getName(), "Drifter") && !BeyondConfig.isMentoree(player) && !BeyondConfig.isMentor(player)){
 				if(plugin.getServer().getPlayer(arg[0]) != null){
 					if(!BeyondConfig.isMentor(plugin.getServer().getPlayer(arg[0]))){
-						BeyondConfig.setMentoree(plugin.getServer().getPlayer(arg[0]).getName(), player.getName());
-						BeyondConfig.setStamp(plugin.getServer().getPlayer(arg[0]).getName(), 1);
-						plugin.getServer().getPlayer(arg[0]).sendMessage(ChatColor.GREEN.toString()+"Congrats!  You are now a mentor to "+player.getName());
-						plugin.getServer().getPlayer(arg[0]).sendMessage("Use "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to privately chat with your drifter!");
-						player.sendMessage(ChatColor.GREEN.toString()+"Congrats!  You are now being mentored by "+plugin.getServer().getPlayer(arg[0]).getName());
-						player.sendMessage("Use "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to privately chat with your mentor!");
-						invite.remove(plugin.getServer().getPlayer(arg[0]));
+						if(invite.containsKey(plugin.getServer().getPlayer(arg[0]).getName())){
+							BeyondConfig.setMentoree(plugin.getServer().getPlayer(arg[0]).getName(), player.getName());
+							BeyondConfig.setStamp(plugin.getServer().getPlayer(arg[0]).getName(), 1);
+							plugin.getServer().getPlayer(arg[0]).sendMessage(ChatColor.GREEN.toString()+"Congrats!  You are now a mentor to "+player.getName());
+							plugin.getServer().getPlayer(arg[0]).sendMessage("Use "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to privately chat with your drifter!");
+							player.sendMessage(ChatColor.GREEN.toString()+"Congrats!  You are now being mentored by "+plugin.getServer().getPlayer(arg[0]).getName());
+							player.sendMessage("Use "+ChatColor.GREEN.toString()+"/mc"+ChatColor.WHITE.toString()+" to privately chat with your mentor!");
+							invite.remove(plugin.getServer().getPlayer(arg[0]).getName());
+						}else{
+							player.sendMessage(ChatColor.RED.toString()+"This player does not want to be your mentor.");
+						}
 					}else{
 						player.sendMessage(ChatColor.RED.toString()+"This mentor is already mentoring another player! Try another one.");
 					}
@@ -120,6 +124,7 @@ public class CommandRunner implements CommandExecutor {
 			}else{
 				player.sendMessage(ChatColor.RED.toString()+"Not a valid command for your current situation");
 			}
+			return true;
 		}
 		return false;
 	}
